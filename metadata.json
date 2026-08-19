@@ -1,0 +1,6 @@
+{
+  "name": "NK Cooling Corporation",
+  "description": "Premium electrical appliance repair, installation, servicing & maintenance for AC, RO, Cooler, Freezer, and Washing Machine in Bhatpar Rani, Deoria, Salempur, Lar, and Bhatni.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

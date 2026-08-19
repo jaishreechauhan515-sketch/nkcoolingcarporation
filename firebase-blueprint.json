@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "Appliance service request submitted by customers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "description": "Unique booking ID" },
+        "customerName": { "type": "string", "minLength": 2, "maxLength": 80, "description": "Full name of customer" },
+        "phone": { "type": "string", "minLength": 10, "maxLength": 15, "pattern": "^[0-9+ ]+$", "description": "Contact phone number" },
+        "serviceType": { "type": "string", "enum": ["ac", "ro", "cooler", "freezer", "washing_machine", "other"], "description": "Category of appliance" },
+        "serviceTitle": { "type": "string", "maxLength": 100, "description": "Name of the requested service" },
+        "serviceArea": { "type": "string", "maxLength": 80, "description": "Location area in Deoria district" },
+        "address": { "type": "string", "maxLength": 300, "description": "Full street/colony address" },
+        "preferredDate": { "type": "string", "maxLength": 30, "description": "Customer preferred service date" },
+        "preferredTimeSlot": { "type": "string", "maxLength": 30, "description": "Preferred time window" },
+        "notes": { "type": "string", "maxLength": 500, "description": "Appliance fault description or instructions" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "in_progress", "completed", "cancelled"], "description": "Lifecycle status of the booking" },
+        "userId": { "type": "string", "maxLength": 128, "description": "Auth UID of the customer if signed in or guest" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp when booking was created" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Timestamp when booking was last updated" }
+      },
+      "required": ["customerName", "phone", "serviceType", "serviceArea", "status", "createdAt"]
+    },
+    "TechnicianApplication": {
+      "title": "TechnicianApplication",
+      "description": "Job application submitted by skilled technicians",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "description": "Unique application ID" },
+        "fullName": { "type": "string", "minLength": 2, "maxLength": 80, "description": "Applicant full name" },
+        "phone": { "type": "string", "minLength": 10, "maxLength": 15, "pattern": "^[0-9+ ]+$", "description": "Applicant contact number" },
+        "experienceYears": { "type": "string", "maxLength": 30, "description": "Years of field repair experience" },
+        "skills": { "type": "string", "maxLength": 200, "description": "Specialized repair trades" },
+        "preferredArea": { "type": "string", "maxLength": 80, "description": "Preferred service town" },
+        "message": { "type": "string", "maxLength": 500, "description": "Cover note or message" },
+        "status": { "type": "string", "enum": ["new", "reviewed", "contacted", "rejected"], "description": "Application review status" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Submission timestamp" }
+      },
+      "required": ["fullName", "phone", "status", "createdAt"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer feedback and ratings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "description": "Unique review ID" },
+        "authorName": { "type": "string", "minLength": 2, "maxLength": 80, "description": "Customer name" },
+        "serviceCategory": { "type": "string", "maxLength": 80, "description": "Appliance serviced" },
+        "rating": { "type": "number", "description": "Star rating out of 5" },
+        "comment": { "type": "string", "maxLength": 500, "description": "Review feedback" },
+        "location": { "type": "string", "maxLength": 80, "description": "Town name" },
+        "isApproved": { "type": "boolean", "description": "Moderation approval state" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Review submission timestamp" }
+      },
+      "required": ["authorName", "rating", "comment", "isApproved", "createdAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Authorized administrator record for role-based access",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email", "maxLength": 120, "description": "Admin email address" },
+        "role": { "type": "string", "enum": ["admin"], "description": "Privilege role" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Customer appliance service booking requests."
+    },
+    "/technician_applications/{applicationId}": {
+      "schema": "TechnicianApplication",
+      "description": "Job applications submitted by technicians."
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Customer ratings and testimonials."
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Authorized administrators."
+    }
+  }
+}
