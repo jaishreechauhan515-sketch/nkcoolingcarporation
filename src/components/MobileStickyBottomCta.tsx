@@ -12,7 +12,7 @@ export const MobileStickyBottomCta: React.FC<MobileStickyBottomCtaProps> = ({ on
       
       {/* Call Button */}
       <a
-        href={`tel:${COMPANY_DETAILS.phone}`}
+        href={`tel:+91${COMPANY_DETAILS.phone}`}
         className="flex-1 py-3 rounded-2xl bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 font-extrabold text-xs flex items-center justify-center space-x-1.5 transition"
       >
         <Phone className="w-4 h-4 text-indigo-400" />

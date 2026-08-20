@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenB
           </div>
           <div className="flex items-center space-x-4">
             <a
-              href={`tel:${COMPANY_DETAILS.phone}`}
+              href={`tel:+91${COMPANY_DETAILS.phone}`}
               className="flex items-center text-zinc-200 hover:text-indigo-300 font-semibold transition"
             >
               <Phone className="w-3.5 h-3.5 mr-1.5 text-indigo-400" />
@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenB
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center space-x-3">
           <a
-            href={`tel:${COMPANY_DETAILS.phone}`}
+            href={`tel:+91${COMPANY_DETAILS.phone}`}
             className="flex items-center space-x-2 px-3.5 py-2.5 rounded-2xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-200 font-bold text-xs sm:text-sm transition"
           >
             <Phone className="w-4 h-4 text-indigo-600" />
@@ -163,7 +163,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenB
               Book a Technician Now
             </button>
             <a
-              href={`tel:${COMPANY_DETAILS.phone}`}
+              href={`tel:+91${COMPANY_DETAILS.phone}`}
               className="w-full py-3 rounded-2xl bg-zinc-100 text-zinc-900 font-bold text-center border border-zinc-200 flex items-center justify-center space-x-2"
             >
               <Phone className="w-4 h-4 text-indigo-600" />

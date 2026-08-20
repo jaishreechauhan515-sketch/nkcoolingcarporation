@@ -33,7 +33,7 @@ export const ContactPage: React.FC = () => {
 
             <div className="space-y-4 text-sm">
               <a
-                href={`tel:${COMPANY_DETAILS.phone}`}
+                href={`tel:+91${COMPANY_DETAILS.phone}`}
                 className="flex items-center space-x-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500 transition group"
               >
                 <div className="p-2.5 rounded-lg bg-blue-600/20 text-cyan-400 shrink-0">
@@ -56,7 +56,7 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-[11px] font-bold text-slate-400 uppercase block">WhatsApp Direct Chat</span>
-                  <span className="font-extrabold text-emerald-400">{COMPANY_DETAILS.phoneFormatted}</span>
+                  <span className="font-extrabold text-emerald-400">{COMPANY_DETAILS.whatsappNumber}</span>
                 </div>
               </a>
 

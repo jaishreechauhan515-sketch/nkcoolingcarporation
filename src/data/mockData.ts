@@ -42,8 +42,8 @@ export const COMPANY_DETAILS = {
   headline: "Reliable Service. Skilled Technicians. Complete Appliance Solutions.",
   subheadline: "Professional repair, servicing, installation and maintenance for AC, RO, Cooler, Refrigerator, Washing Machine and supported electrical appliances.",
   phone: "9120366773",
-  phoneFormatted: "+91 91203 66773",
-  whatsappNumber: "9120366773",
+  phoneFormatted: "9120366773",
+  whatsappNumber: "9919116773",
   website: "nkcoolingcorporation.in",
   email: "support@nkcoolingcorporation.in",
   primaryAreas: ["Bhatpar Rani, Deoria", "Salempur", "Lar", "Bhatni"],
@@ -507,7 +507,7 @@ export const FAQS: FAQ[] = [
   {
     id: "faq-03",
     question: "03. How can I book a technician?",
-    answer: "You can easily book a technician by filling out our quick 'Book a Technician' form on the website or by directly clicking the WhatsApp / Call button for phone number 9120366773. Our team confirms your time slot instantly via WhatsApp."
+    answer: "You can easily book a technician by filling out our quick 'Book a Technician' form on the website or by directly clicking the WhatsApp / Call button. Our team confirms your time slot instantly via WhatsApp."
   },
   {
     id: "faq-04",
@@ -517,7 +517,7 @@ export const FAQS: FAQ[] = [
   {
     id: "faq-05",
     question: "05. How can I contact NK Cooling Corporation on WhatsApp?",
-    answer: "You can click the floating WhatsApp icon on the bottom right corner of any page or send a message directly to 9120366773. The website generates a pre-filled booking summary for instant messaging."
+    answer: "You can click the floating WhatsApp icon on the bottom right corner of any page or send a message directly to 9919116773. The website generates a pre-filled booking summary for instant messaging."
   },
   {
     id: "faq-06",

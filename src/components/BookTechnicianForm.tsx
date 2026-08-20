@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { COMPANY_DETAILS } from '../data/mockData';
 import { BookingFormData } from '../types';
 import { Wrench, MessageSquare, Phone, Calendar, Clock, MapPin, User, FileText, CheckCircle2, Loader2 } from 'lucide-react';
-import { createBooking } from '../services/firebaseDb';
 
 interface BookTechnicianFormProps {
   initialService?: string;
@@ -62,16 +61,6 @@ export const BookTechnicianForm: React.FC<BookTechnicianFormProps> = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  const mapApplianceToServiceType = (app: string): 'ac' | 'ro' | 'cooler' | 'freezer' | 'washing_machine' | 'other' => {
-    const lower = app.toLowerCase();
-    if (lower.includes('ac')) return 'ac';
-    if (lower.includes('ro')) return 'ro';
-    if (lower.includes('cooler')) return 'cooler';
-    if (lower.includes('freezer') || lower.includes('fridge') || lower.includes('refrigerator')) return 'freezer';
-    if (lower.includes('washing')) return 'washing_machine';
-    return 'other';
-  };
-
   const generateWhatsAppUrl = (refId?: string): string => {
     const refText = refId ? `*Booking Ref:* #${refId}\n` : '';
     const text = `Hello NK Cooling Corporation,\n\nI would like to book a technician.\n\n${refText}*Name:* ${formData.fullName}\n*Mobile:* ${formData.mobileNumber}\n*Appliance:* ${formData.appliance}\n*Service Required:* ${formData.serviceRequired}\n*Service Area:* ${formData.serviceArea}\n*Preferred Date:* ${formData.preferredDate}\n*Preferred Time:* ${formData.preferredTime}\n*Problem Description:* ${formData.problemDescription || 'Not specified'}\n\nPlease contact me regarding my service request.`;
@@ -85,30 +74,18 @@ export const BookTechnicianForm: React.FC<BookTechnicianFormProps> = ({
 
     setIsSaving(true);
     let createdId = '';
-    try {
-      createdId = await createBooking({
-        customerName: formData.fullName,
-        phone: formData.mobileNumber,
-        serviceType: mapApplianceToServiceType(formData.appliance),
-        serviceTitle: formData.serviceRequired,
-        serviceArea: formData.serviceArea,
-        preferredDate: formData.preferredDate,
-        preferredTimeSlot: formData.preferredTime,
-        notes: formData.problemDescription
-      });
-      setBookingRefId(createdId);
-    } catch (err) {
-      console.warn('Firestore booking submission error (proceeding to WhatsApp):', err);
-    } finally {
-      setIsSaving(false);
-      setSubmitted(true);
-      const waUrl = generateWhatsAppUrl(createdId);
-      
-      // Redirect to WhatsApp
-      setTimeout(() => {
-        window.open(waUrl, '_blank');
-      }, 500);
-    }
+    
+    // Simulate minor delay
+    await new Promise(resolve => setTimeout(resolve, 600));
+
+    setIsSaving(false);
+    setSubmitted(true);
+    const waUrl = generateWhatsAppUrl(createdId);
+    
+    // Redirect to WhatsApp
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 500);
   };
 
   return (
@@ -333,7 +310,7 @@ export const BookTechnicianForm: React.FC<BookTechnicianFormProps> = ({
           </button>
 
           <p className="text-[11px] text-zinc-400 text-center font-medium">
-            Or call directly: <a href={`tel:${COMPANY_DETAILS.phone}`} className="text-indigo-600 font-bold underline">{COMPANY_DETAILS.phone}</a>
+            Or call directly: <a href={`tel:+91${COMPANY_DETAILS.phone}`} className="text-indigo-600 font-bold underline">{COMPANY_DETAILS.phone}</a>
           </p>
         </form>
       )}

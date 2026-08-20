@@ -1,19 +1,17 @@
 import React from 'react';
 import { COMPANY_DETAILS } from '../data/mockData';
-import { Wrench, Phone, MessageSquare, MapPin, Youtube, Instagram, Facebook, ShieldCheck, Image as ImageIcon, Database } from 'lucide-react';
+import { Wrench, Phone, MessageSquare, MapPin, Youtube, Instagram, Facebook, ShieldCheck, Image as ImageIcon } from 'lucide-react';
 
 interface FooterProps {
   onNavClick: (tabId: string) => void;
   onOpenBooking: () => void;
   onOpenImageManager: () => void;
-  onOpenAdmin?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavClick,
   onOpenBooking,
-  onOpenImageManager,
-  onOpenAdmin
+  onOpenImageManager
 }) => {
   return (
     <footer className="bg-zinc-950 text-zinc-100 border-t border-zinc-900 pt-16 pb-12">
@@ -42,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({
             </button>
 
             <a
-              href={`tel:${COMPANY_DETAILS.phone}`}
+              href={`tel:+91${COMPANY_DETAILS.phone}`}
               className="px-5 py-3.5 rounded-2xl bg-indigo-700 hover:bg-indigo-800 text-white font-extrabold text-sm border border-indigo-500/50 flex items-center space-x-2 transition"
             >
               <Phone className="w-4 h-4" />
@@ -170,9 +168,14 @@ export const Footer: React.FC<FooterProps> = ({
 
             <div className="pt-2 text-xs space-y-1">
               <span className="text-zinc-500 block text-[10px] uppercase font-black">Call / WhatsApp:</span>
-              <a href={`tel:${COMPANY_DETAILS.phone}`} className="font-extrabold text-indigo-400 text-sm block">
-                {COMPANY_DETAILS.phone}
-              </a>
+              <div className="flex flex-col space-y-0.5">
+                <a href={`tel:+91${COMPANY_DETAILS.phone}`} className="font-extrabold text-indigo-400 text-sm block hover:text-indigo-300">
+                  Call: {COMPANY_DETAILS.phone}
+                </a>
+                <a href={`https://wa.me/91${COMPANY_DETAILS.whatsappNumber}`} className="font-extrabold text-emerald-400 text-sm block hover:text-emerald-300">
+                  WhatsApp: {COMPANY_DETAILS.whatsappNumber}
+                </a>
+              </div>
             </div>
           </div>
 
@@ -183,16 +186,6 @@ export const Footer: React.FC<FooterProps> = ({
           <p>© {new Date().getFullYear()} NK Cooling Corporation. All Rights Reserved.</p>
           
           <div className="flex flex-wrap items-center justify-center gap-4">
-            {onOpenAdmin && (
-              <button
-                onClick={onOpenAdmin}
-                className="text-zinc-400 hover:text-indigo-400 flex items-center space-x-1.5 transition font-bold"
-              >
-                <Database className="w-3.5 h-3.5" />
-                <span>Admin & Bookings Portal</span>
-              </button>
-            )}
-            {onOpenAdmin && <span>•</span>}
             <button
               onClick={onOpenImageManager}
               className="text-zinc-400 hover:text-indigo-400 flex items-center space-x-1.5 transition font-bold"

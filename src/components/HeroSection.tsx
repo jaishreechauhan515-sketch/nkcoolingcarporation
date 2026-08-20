@@ -73,7 +73,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onSelec
                 </a>
 
                 <a
-                  href={`tel:${COMPANY_DETAILS.phone}`}
+                  href={`tel:+91${COMPANY_DETAILS.phone}`}
                   className="px-5 py-4 rounded-2xl bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-extrabold text-sm transition border border-zinc-200 flex items-center space-x-2"
                 >
                   <Phone className="w-4 h-4 text-indigo-600" />

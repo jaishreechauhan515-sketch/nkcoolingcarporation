@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { COMPANY_DETAILS, MOCK_IMAGES } from '../data/mockData';
 import { TechnicianApplicationData } from '../types';
 import { UserCheck, MessageSquare, Briefcase, Phone, MapPin, CheckCircle2, Loader2 } from 'lucide-react';
-import { createTechnicianApplication } from '../services/firebaseDb';
 
 export const WorkWithUsSection: React.FC = () => {
   const [formData, setFormData] = useState<TechnicianApplicationData>({
@@ -61,25 +60,16 @@ export const WorkWithUsSection: React.FC = () => {
 
     setIsSaving(true);
     let createdId = '';
-    try {
-      createdId = await createTechnicianApplication({
-        fullName: formData.fullName,
-        phone: formData.mobileNumber,
-        experienceYears: formData.experienceYears,
-        skills: `${formData.appliancesServiced.join(', ')}${formData.technicalSkills ? ` | ${formData.technicalSkills}` : ''}`,
-        preferredArea: `${formData.preferredServiceArea} (${formData.currentLocation})`,
-        message: formData.introduction
-      });
-    } catch (err) {
-      console.warn('Firestore technician application error (proceeding to WhatsApp):', err);
-    } finally {
-      setIsSaving(false);
-      setSubmitted(true);
-      const waUrl = generateWhatsAppUrl(createdId);
-      setTimeout(() => {
-        window.open(waUrl, '_blank');
-      }, 500);
-    }
+    
+    // Simulate minor delay
+    await new Promise(resolve => setTimeout(resolve, 600));
+
+    setIsSaving(false);
+    setSubmitted(true);
+    const waUrl = generateWhatsAppUrl(createdId);
+    setTimeout(() => {
+      window.open(waUrl, '_blank');
+    }, 500);
   };
 
   return (
